@@ -111,17 +111,22 @@
   border-left-width: 3px;
   border-radius: 4px;
   padding: 2px 5px;
-  overflow: hidden;
+  overflow: visible;
   cursor: grab;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 .wg .wg-b:active { cursor: grabbing; }
+.wg .wg-b:hover { z-index: 7; }
 .wg .wg-b.is-sel { box-shadow: 0 0 0 2px var(--interactive-accent); z-index: 5; }
 .wg .wg-time {
   font-size: 9.5px;
   opacity: .75;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  flex: 0 0 auto;
+  overflow: hidden;
 }
 .wg .wg-t {
   font-size: 12px;
@@ -130,6 +135,8 @@
   overflow-wrap: anywhere;
   outline: none;
   min-height: 1em;
+  flex: 1 1 auto;
+  overflow: hidden;
 }
 .wg .wg-t.is-edit {
   user-select: text;
@@ -160,13 +167,26 @@
 
 .wg .wg-tools {
   position: absolute;
-  top: 2px; right: 2px;
+  top: 0;
+  left: 100%;
+  /* Padding statt Margin: die Lücke zum Block bleibt hoverbar */
+  padding-left: 6px;
   display: flex;
+  flex-direction: column;
   gap: 2px;
   opacity: 0;
-  z-index: 3;
+  pointer-events: none;
+  z-index: 10;
 }
-.wg .wg-b:hover .wg-tools { opacity: 1; }
+.wg .wg-b:hover .wg-tools,
+.wg .wg-b:focus-within .wg-tools { opacity: 1; pointer-events: auto; }
+/* letzte Spalte: Werkzeuge nach innen klappen, sonst schneidet das Raster sie ab */
+.wg .wg-col:last-child .wg-tools {
+  left: auto;
+  right: 100%;
+  padding-left: 0;
+  padding-right: 6px;
+}
 .wg .wg-ic {
   display: flex;
   align-items: center;
@@ -174,6 +194,8 @@
   width: 22px; height: 22px;
   border-radius: 4px;
   background: var(--background-primary);
+  border: 1px solid var(--wg-line);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .18);
   color: var(--text-muted);
   cursor: pointer;
 }
