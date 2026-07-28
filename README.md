@@ -4,6 +4,8 @@ A quick'n'dirty Obsidian plugin: a generic Monday–Sunday week grid you can scr
 
 No dates, no sync, no save button. It's a whiteboard shaped like a week.
 
+![WeekGrid](screenshot.png)
+
 ## Why
 
 Real calendars want dates, invitations, reminders and a save dialog. Drafting a *typical* week needs none of that — just drag a box, name it, move it, done.
