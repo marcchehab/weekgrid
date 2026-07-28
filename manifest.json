@@ -1,0 +1,9 @@
+{
+  "id": "weekgrid",
+  "name": "WeekGrid",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Drag-to-draw weekly schedule grid with colored blocks. No save button, data lives in a vault JSON file.",
+  "author": "chris",
+  "isDesktopOnly": false
+}
