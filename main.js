@@ -148,7 +148,9 @@ class GridView {
     this.dragging = null;
     this.onKey = this.onKey.bind(this);
     document.addEventListener('keydown', this.onKey);
-    this.timer = window.setInterval(() => this.renderNow(), 60000);
+    this.timer = window.setInterval(() => {
+      if (document.body.contains(this.el)) this.renderNow();
+    }, 60000);
     plugin.registerInterval(this.timer);
   }
 
@@ -159,7 +161,7 @@ class GridView {
   }
 
   renderNow() {
-    if (!this.cols || !document.body.contains(this.el)) return;
+    if (!this.cols) return;
     this.el.querySelectorAll('.wg-now').forEach((n) => n.remove());
     const d = new Date();
     const day = (d.getDay() + 6) % 7;
